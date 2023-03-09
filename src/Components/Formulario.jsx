@@ -4,9 +4,18 @@ import Card from "./Card"
 const Formulario = () => {
     const [nombre, setNombre] = useState('')
     const [raza, setRaza] = useState('')
+    const [validacion, setValidacion] = useState(null)
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(!nombre);
+        console.log(nombre[0]);
+        if ((nombre.length<4 || nombre[0] == " ") || raza.length<7) {
+            console.log(validacion);
+            setValidacion(false)
+        } else {
+            console.log(validacion);
+            setValidacion(true)
+        }
         
     }
 
@@ -34,11 +43,11 @@ const Formulario = () => {
     <button type='submit'>Agregar a la orden</button>
 
     {
-        nombre
+        validacion
         ?
-        <Card/>
+        <Card nombre={nombre} raza={raza}/>
         :
-        <h3>Error</h3>
+        <h3>Por favor revisa que la informacion sea correcta</h3>
     } 
 
     </form>
